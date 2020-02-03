@@ -5,7 +5,7 @@
 
 This project will compare methods for handling missing data in variant annotations for the purpose of building variant pathogenicity metapredictors.
 
-See [the research plan](docs/research_plan/research_plan.md) for a more detailed description. 
+See [the research plan](docs/research_plan/research_plan.md) for a more detailed description.
 
 To generate a PDF version with a working references section:
 
@@ -16,6 +16,34 @@ $ make
 ```
 
 [Pandoc](https://pandoc.org/) and a [LaTeX distribution](https://www.latex-project.org/) must be installed.
+
+## Paper draft
+
+The development of the draft paper describing this project can also be followed in [the repository](docs/paper/paper.pdf).
+
+## Instructions
+
+To reproduce the main results: (roughly estimated execution times in parentheses)
+
+Note: the following instructions assume that you clone the repository into your home folder. Remember to adjust the paths if another base directory is used.
+
+
+1. Clone the git repository with `git clone https://github.com/blueprint-genetics/amiss.git`
+2. [Acquire and annotate variant data](docs/instructions/annotation.md) (~3 h)
+3. [Acquire CADD annotations](docs/instructions/cadd_data_download.md) (300 GB download!)
+4. Using the repository root as working directory, run the scripts in order:
+    - 01_parse_vcf.R (<1 hour)
+    - 02_1_expand_data.R (<1 min)
+    - 02_2_contract_data.R (<1 min)
+    - optional: use Rstudio to view 03_descriptive_stats.Rmd ([knitted pdf here](R/03_descriptive_stats.pdf)) (1-5 min)
+    - 04_impute_and_train.R (tested with 24 cores available: ~24 hours)
+    - 05_test_prediction.R (1-2 hours)
+    - TODO: 06_analyze_main_results.R
+
+5. To reproduce simulation results, run also
+    - WIP: 07_generate_simulated_data.R
+    - TODO: 08_run_simulations.R
+    - TODO: 08_analyze_results.R
 
 ## Open science
 
